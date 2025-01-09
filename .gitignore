@@ -1,0 +1,5 @@
+venv/*
+layer/*
+data/*
+.idea/*
+main.py
