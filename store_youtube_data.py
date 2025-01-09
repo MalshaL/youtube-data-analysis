@@ -113,15 +113,14 @@ stats_df_renamed = stats_df \
                 .withColumnRenamed('favoritecount', 'favorite_count') \
                 .withColumnRenamed('commentcount', 'comment_count') 
 
-# cast data types
-stats_df_renamed = stats_df_renamed \
-                        .withColumn('initial_collection_date', to_date(col('initial_collection_date'), "yyyy-MM-dd HH:mm:ss")) \
-                        .withColumn('collection_date', to_date(col('collection_date'), "yyyy-MM-dd HH:mm:ss"))
-
-
 # union initial stats and stats data
 stats_df_modified = initial_stats_df
 if not stats_df_renamed.isEmpty():
+    # cast data types
+    stats_df_renamed = stats_df_renamed \
+                        .withColumn('initial_collection_date', to_date(col('initial_collection_date'), "yyyy-MM-dd HH:mm:ss")) \
+                        .withColumn('collection_date', to_date(col('collection_date'), "yyyy-MM-dd HH:mm:ss"))
+
     stats_df_modified = stats_df_renamed.union(initial_stats_df)
 
 # add columns
