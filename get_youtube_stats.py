@@ -70,7 +70,7 @@ def lambda_handler(event, context):
                     "id": item.get('id', ''),
                     "initialCollectionDate": file_date,
                     "collectionDate": search_date_dt,
-                    "collectionCount": (file_date - oldest_collection_date).days + 2,
+                    "collectionCount": (search_date_dt-file_date).days + 1,
                     "viewCount": statistics.get('viewCount', '0'),
                     "likeCount": statistics.get('likeCount', '0'),
                     "favoriteCount": statistics.get('favoriteCount', '0'),
